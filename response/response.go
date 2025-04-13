@@ -7,6 +7,7 @@ import (
 	"github.com/Miskamyasa/utils/alerts"
 )
 
+// SendJsonResponse sends a JSON response with the given payload and sets the Content-Type header to application/json.
 func SendJsonResponse(w http.ResponseWriter, payload interface{}) {
 	w.Header().Set("Content-Type", "application/json")
 	err := json.NewEncoder(w).Encode(payload)
@@ -16,6 +17,7 @@ func SendJsonResponse(w http.ResponseWriter, payload interface{}) {
 	}
 }
 
+// SendInternalServerError sends a 500 Internal Server Error response.
 func SendInternalServerError(w http.ResponseWriter) {
 	w.WriteHeader(http.StatusInternalServerError)
 	_, err := w.Write([]byte("Internal Server Error"))
@@ -24,6 +26,7 @@ func SendInternalServerError(w http.ResponseWriter) {
 	}
 }
 
+// SendBadRequest sends a 400 Bad Request response with a custom message.
 func SendBadRequest(w http.ResponseWriter, msg string) {
 	w.WriteHeader(http.StatusBadRequest)
 	_, err := w.Write([]byte("Bad Request! " + msg))
@@ -32,6 +35,7 @@ func SendBadRequest(w http.ResponseWriter, msg string) {
 	}
 }
 
+// HealthCheckHandler is a simple health check handler that responds with a 200 OK status.
 func HealthCheckHandler(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 	_, err := w.Write([]byte("OK"))

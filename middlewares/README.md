@@ -4,34 +4,6 @@ This package provides various HTTP middleware functions to enhance the functiona
 
 ## Functions
 
-### 1. GenerateCacheKey
-Generates a unique cache key based on the client's IP address and request path.
-
-#### Parameters:
-- `req *http.Request`: The incoming HTTP request.
-
-#### Returns:
-- A string representing the generated cache key.
-
-#### Example Usage:
-```go
-cacheKey := GenerateCacheKey(req)
-```
-
-### 2. CacheMiddleware
-A middleware function that checks if a response is cached and sends it from the cache instead of processing the request further if found in the cache.
-
-#### Parameters:
-- `next http.Handler`: The next handler in the chain to invoke after this middleware, which should handle the actual logic for generating a response.
-
-#### Returns:
-- An `http.Handler` that wraps around the original handler and adds caching functionality.
-
-#### Example Usage:
-```go
-http.Handle("/", CacheMiddleware(http.HandlerFunc(someHandler)))
-```
-
 ### 3. RecoveryMiddleware
 A middleware function that recovers from panics, logs errors with stack traces, sends an alert if needed, and returns a generic internal server error response.
 
@@ -62,8 +34,6 @@ http.Handle("/", AuthMiddleware(http.HandlerFunc(someHandler)))
 
 ## Notes:
 
-- **CacheMiddleware**: This function uses a cache mechanism (imported from `github.com/Miskamyasa/utils/cache`) to check if the response for a given request is already cached. If found, it sends the cached content directly as a JSON response.
-  
 - **RecoveryMiddleware**: It catches any panics that occur in subsequent middleware or handlers and logs them along with stack traces. It also triggers an alert using `github.com/Miskamyasa/utils/alerts` package's `Send` function and returns an internal server error (HTTP status code 500) to the client.
 
 - **AuthMiddleware**: This middleware checks for a specific authorization token in the request headers (`auth-token`). If the token does not match the configured `AUTH_TOKEN`, it logs an unauthorized access attempt and sends back an internal server error response.

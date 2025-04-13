@@ -3,6 +3,7 @@ package cache
 import (
 	"context"
 	"encoding/json"
+	"net/http"
 	"os"
 	"strconv"
 	"time"
@@ -39,10 +40,19 @@ func InitCache() *redis.Client {
 	return client
 }
 
+// GenerateCacheKey generates a cache key based on the request's remote address and URL path.
+func GenerateCacheKey(req *http.Request) string {
+	ip := req.RemoteAddr
+	path := req.URL.Path
+	return "cache:" + ip + ":" + path
+}
+
+// CreateDuration creates a time.Duration from seconds.
 func CreateDuration(seconds int) time.Duration {
 	return time.Duration(seconds) * time.Second
 }
 
+// GetCache retrieves a value from the cache using the provided key and unmarshals it into the provided payload.
 func GetCache[T any](key string, payload *T) error {
 	if os.Getenv("ENV") == "development" {
 		return nil
@@ -62,6 +72,7 @@ func GetCache[T any](key string, payload *T) error {
 	return nil
 }
 
+// SetCache stores a value in the cache with the provided key and TTL (time-to-live).
 func SetCache[T any](key string, payload T, TTL time.Duration) error {
 	if os.Getenv("ENV") == "development" {
 		return nil
