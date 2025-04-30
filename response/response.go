@@ -7,6 +7,19 @@ import (
 	"github.com/Miskamyasa/utils/alerts"
 )
 
+type Response struct {
+	message string
+	payload interface{}
+}
+
+// NewResponse creates a new Response instance with type parameter T for payload
+func NewResponse[T any](message string, payload T) Response {
+	return Response{
+		message: message,
+		payload: payload,
+	}
+}
+
 // SendJsonResponse sends a JSON response with the given payload and sets the Content-Type header to application/json.
 func SendJsonResponse(w http.ResponseWriter, payload interface{}) {
 	w.Header().Set("Content-Type", "application/json")

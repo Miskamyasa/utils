@@ -11,6 +11,7 @@ require (
 	github.com/open-feature/go-sdk-contrib/providers/flagd v0.2.2
 	github.com/redis/go-redis/v9 v9.7.0
 	github.com/rs/zerolog v1.29.0
+	github.com/stretchr/testify v1.10.0
 	go.mongodb.org/mongo-driver v1.17.1
 )
 
@@ -22,6 +23,7 @@ require (
 	connectrpc.com/otelconnect v0.7.0 // indirect
 	github.com/barkimedes/go-deepcopy v0.0.0-20220514131651-17c30cfc62df // indirect
 	github.com/cespare/xxhash/v2 v2.3.0 // indirect
+	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
 	github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f // indirect
 	github.com/diegoholiveira/jsonlogic/v3 v3.5.2 // indirect
 	github.com/fsnotify/fsnotify v1.7.0 // indirect
@@ -42,6 +44,7 @@ require (
 	github.com/montanaflynn/stats v0.7.1 // indirect
 	github.com/open-feature/flagd-schemas v0.2.9-0.20240408192555-ea4f119d2bd7 // indirect
 	github.com/open-feature/flagd/core v0.9.1 // indirect
+	github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2 // indirect
 	github.com/twmb/murmur3 v1.1.8 // indirect
 	github.com/vmihailenco/go-tinylfu v0.2.2 // indirect
 	github.com/vmihailenco/msgpack/v5 v5.3.4 // indirect
