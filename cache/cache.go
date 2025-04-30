@@ -3,7 +3,6 @@ package cache
 import (
 	"context"
 	"encoding/json"
-	"net/http"
 	"os"
 	"strconv"
 	"time"
@@ -38,13 +37,6 @@ func InitCache() *redis.Client {
 	})
 
 	return client
-}
-
-// GenerateCacheKey generates a cache key based on the request's remote address and URL path.
-func GenerateCacheKey(req *http.Request) string {
-	ip := req.RemoteAddr
-	path := req.URL.Path
-	return "cache:" + ip + ":" + path
 }
 
 // CreateDuration creates a time.Duration from seconds.
