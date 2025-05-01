@@ -19,6 +19,7 @@ func GenerateCacheKey(req *http.Request) string {
 	return "cache:" + ip + ":" + path
 }
 
+// CacheMiddleware is a middleware that caches the response of the request
 func CacheMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
 		var payload *interface{}
@@ -35,6 +36,7 @@ func CacheMiddleware(next http.Handler) http.Handler {
 	})
 }
 
+// RecoveryMiddleware is a middleware that recovers from panics and sends an internal server error response
 func RecoveryMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		defer func() {
@@ -61,6 +63,7 @@ func RecoveryMiddleware(next http.Handler) http.Handler {
 	})
 }
 
+// AuthMiddleware checks if the request has a valid auth token in the header
 func AuthMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		token := r.Header.Get("auth-token")
