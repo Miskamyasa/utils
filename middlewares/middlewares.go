@@ -19,7 +19,7 @@ func GenerateCacheKey(req *http.Request) string {
 	return "cache:" + ip + ":" + path
 }
 
-// CacheMiddleware is a middleware that caches the response of the request
+// CacheMiddleware is a middleware that caches the response of the request using its IP and path as the cache key
 func CacheMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
 		var payload *interface{}
